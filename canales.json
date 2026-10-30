@@ -1,0 +1,23 @@
+{
+"propietario_id": null,
+"admins": [],
+"paypal_url": "https://www.paypal.com/donate/?business=softwarytec24%40gmail.com&no_recurring=1&currency_code=USD&item_name=EM+Premium",
+"texto_boton_donar": "Donar vía PayPal",
+"fijar_mensajes": true,
+"reacciones_activas": true,
+"opciones_publicacion": {
+"nueva_nombre": true,
+"nueva_descripcion": true,
+"nueva_cambios": true,
+"act_nombre": false,
+"act_descripcion": false,
+"act_cambios": true,
+"reacciones": true,
+"boton_paypal": true,
+"fijar": true,
+"publicador": false
+},
+"canales": [],
+"votos": {},
+"historial_publicaciones": []
+}
