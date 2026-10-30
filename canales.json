@@ -47,6 +47,34 @@
       "agregado": "2026-10-30T02:02:58.457Z"
     }
   ],
-  "votos": {},
-  "historial_publicaciones": []
+  "votos": {
+    "-1002627538961:565": {
+      "up": [],
+      "down": [],
+      "paypal": "https://www.paypal.com/donate/?business=softwarytec24%40gmail.com&no_recurring=1&currency_code=USD&item_name=EM+Premium",
+      "reacciones": true
+    },
+    "-1002873517081:4": {
+      "up": [],
+      "down": [],
+      "paypal": "https://www.paypal.com/donate/?business=softwarytec24%40gmail.com&no_recurring=1&currency_code=USD&item_name=EM+Premium",
+      "reacciones": true
+    },
+    "-1002015490986:2460": {
+      "up": [],
+      "down": [],
+      "paypal": "https://www.paypal.com/donate/?business=softwarytec24%40gmail.com&no_recurring=1&currency_code=USD&item_name=EM+Premium",
+      "reacciones": true
+    }
+  },
+  "historial_publicaciones": [
+    {
+      "fecha": "2026-10-30T04:23:12.997Z",
+      "app": "Mili-music",
+      "version": "",
+      "es_actualizacion": true,
+      "enviados": 3,
+      "total_canales": 4
+    }
+  ]
 }
