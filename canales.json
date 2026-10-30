@@ -17,7 +17,15 @@
     "fijar": true,
     "publicador": false
   },
-  "canales": [],
+  "canales": [
+    {
+      "id": -1002627538961,
+      "titulo": "Accesorios del Jieshuo",
+      "username": "",
+      "privado": true,
+      "agregado": "2026-10-30T02:02:08.459Z"
+    }
+  ],
   "votos": {},
   "historial_publicaciones": []
 }
