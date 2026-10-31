@@ -353,7 +353,7 @@ function quitarCanalPorId(id) {
   return false;
 }
 
-function armarTecladoPublicacion(upCount, downCount, paypalUrl, textoDonar, urlExtra, opPub) {
+function armarTecladoPublicacion(upCount, downCount, paypalUrl, textoDonar, urlExtra, opPub, etiquetaDescarga) {
   const op = normalizarOpciones(opPub || datos.opciones_publicacion);
   const filas = [];
   if (op.reacciones !== false) {
@@ -363,7 +363,7 @@ function armarTecladoPublicacion(upCount, downCount, paypalUrl, textoDonar, urlE
     ]);
   }
   if (urlExtra && /^https?:\/\//i.test(urlExtra)) {
-    filas.push([{ text: "📥 Descargar APK", url: urlExtra }]);
+    filas.push([{ text: "📥 " + (etiquetaDescarga || "Descargar APK"), url: urlExtra }]);
   }
   if (op.boton_paypal !== false) {
     const urlDonar = normalizarPaypal(paypalUrl || datos.paypal_url);
@@ -377,9 +377,10 @@ function armarTecladoPublicacion(upCount, downCount, paypalUrl, textoDonar, urlE
 function armarTextoPublicacion(info, opPub) {
   const op = normalizarOpciones(opPub || info.opciones_publicacion || datos.opciones_publicacion);
   const esAct = Boolean(info.es_actualizacion);
-  const incNombre = esAct ? Boolean(op.act_nombre) : (op.nueva_nombre !== false);
-  const incDesc = esAct ? Boolean(op.act_descripcion) : (op.nueva_descripcion !== false);
-  const incCambios = esAct ? (op.act_cambios !== false) : (op.nueva_cambios !== false);
+  const completo = Boolean(info.texto_completo);
+  const incNombre = completo || (esAct ? Boolean(op.act_nombre) : (op.nueva_nombre !== false));
+  const incDesc = completo || (esAct ? Boolean(op.act_descripcion) : (op.nueva_descripcion !== false));
+  const incCambios = completo || (esAct ? (op.act_cambios !== false) : (op.nueva_cambios !== false));
   const incPub = Boolean(op.publicador);
 
   const nombre = escaparHtml(info.app_name || info.repo || "Aplicación");
@@ -406,7 +407,9 @@ function armarTextoPublicacion(info, opPub) {
     if (lineas.length > 0) lineas.push("");
     lineas.push("👤 <b>Publicado por:</b> " + pub);
   }
-  return lineas.join("\n").slice(0, 1020);
+  const desde = escaparHtml(info.distribuido_desde || "").trim();
+  const pie = desde ? ("\n\n🏪 <b>Distribuyendo desde</b> " + desde) : "";
+  return lineas.join("\n").slice(0, 1020 - pie.length) + pie;
 }
 
 async function descargarBufferDeUrl(url, tokenAuth, esApiAsset) {
@@ -508,7 +511,7 @@ async function distribuirACanales(info) {
   for (const apk of apks) {
     let fileIdReutilizable = apk.file_id || null;
     const demasiadoGrande = apk.buffer && apk.buffer.length > 49 * 1024 * 1024;
-    const teclado = armarTecladoPublicacion(0, 0, info.paypal_url, info.texto_boton_donar, demasiadoGrande ? apk.urlDescarga : "", op);
+    const teclado = armarTecladoPublicacion(0, 0, info.paypal_url, info.texto_boton_donar, demasiadoGrande ? apk.urlDescarga : "", op, info.etiqueta_descarga);
 
     for (const canal of datos.canales) {
       try {
